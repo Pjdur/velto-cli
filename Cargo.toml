@@ -1,0 +1,23 @@
+[package]
+name = "velto-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["Pjdur"]
+description = "A fast and minimal CLI tool for building and running Velto web apps"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/pjdur/velto-cli"
+homepage = "https://github.com/pjdur/velto-cli"
+keywords = ["velto", "cli", "web", "framework", "rust"]
+categories = ["command-line-utilities", "web-programming"]
+exclude = ["/target", "*.lock"]
+
+[[bin]]
+name = "velto"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+console = "0.16.1"
+ctrlc = "3.5.0"
+indicatif = "0.18"

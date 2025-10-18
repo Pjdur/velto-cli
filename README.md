@@ -6,10 +6,11 @@
 
 ## ✨ Features
 
-- `velto new <name>` — Create a new Velto project instantly
-- `velto run` — Build and launch your app with clean output
-- LiveReload support in dev mode
-- Graceful shutdown on Ctrl+C
+- `velto new <name>` — Create a new Velto project instantly  
+- `velto run` — Build and launch your app with clean output  
+- `velto build` — Compile your app and optionally package it  
+- LiveReload support in dev mode  
+- Graceful shutdown on Ctrl+C  
 - No noisy Cargo logs — just your app
 
 ---
@@ -32,9 +33,9 @@ velto new my-app
 
 This generates:
 
-- `src/main.rs` with a sample route
-- `templates/index.html` with dynamic content
-- `static/` for assets like CSS and JS
+- `src/main.rs` with a sample route  
+- `templates/index.html` with dynamic content  
+- `static/` for assets like CSS and JS  
 - `Cargo.toml` with Velto dependencies
 
 ---
@@ -47,8 +48,26 @@ velto run --port 3000
 
 Options:
 
-- `--port <PORT>` — Set the port (default: 8080)
+- `--port <PORT>` — Set the port (default: 8080)  
 - `-r`, `--release` — Run in release mode
+
+---
+
+### Build your app
+
+```bash
+velto build --release --output dist/ --copy-assets
+```
+
+Options:
+
+- `-r`, `--release` — Build in release mode  
+- `--target <TRIPLE>` — Cross-compile for a specific target  
+- `--output <DIR>` — Copy the binary to a custom directory  
+- `--quiet` — Suppress Cargo output  
+- `--copy-assets` — Copy `templates/` and `static/` into the output directory
+
+> Note: Running the binary from a custom output directory may require copying assets or setting environment paths.
 
 ---
 

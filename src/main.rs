@@ -1,5 +1,7 @@
+use std::path::PathBuf;
+
 use clap::{Parser, Subcommand};
-use velto_cli::commands::{create_project, run};
+use velto_cli::commands::{build_project, create_project, run};
 
 #[derive(Parser)]
 #[command(
@@ -33,6 +35,29 @@ enum Commands {
         #[arg(short, long)]
         release: bool,
     },
+    
+    /// Build the Velto app
+    Build {
+        /// Build in release mode
+        #[arg(short, long)]
+        release: bool,
+
+        /// Target triple for cross-compilation
+        #[arg(long)]
+        target: Option<String>,
+
+        /// Output directory to copy the binary
+        #[arg(long)]
+        output: Option<PathBuf>,
+
+        /// Suppress Cargo output
+        #[arg(long)]
+        quiet: bool,
+
+        /// Copy assets (e.g. templates, static) to output directory
+        #[arg(long)]
+        copy_assets: bool,
+    },
 }
 
 fn main() {
@@ -49,6 +74,18 @@ fn main() {
             println!("Starting Velto app on port {}...", port);
             if let Err(e) = run(port, release) {
                 eprintln!("Error running Velto app: {}", e);
+            }
+        }
+        Commands::Build {
+            release,
+            target,
+            output,
+            quiet,
+            copy_assets,
+        } => {
+            println!("Building Velto app...");
+            if let Err(e) = build_project(release, target, output, quiet, copy_assets) {
+                eprintln!("Error building Velto app: {}", e);
             }
         }
     }

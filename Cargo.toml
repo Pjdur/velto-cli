@@ -1,6 +1,6 @@
 [package]
 name = "velto-cli"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Pjdur"]
 description = "A fast and minimal CLI tool for building and running Velto web apps"

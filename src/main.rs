@@ -1,7 +1,7 @@
 use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
-use velto_cli::commands::{build_project, create_project, run};
+use velto_cli::commands::{build_project, create_project, run, show_info};
 
 #[derive(Parser)]
 #[command(
@@ -35,7 +35,7 @@ enum Commands {
         #[arg(short, long)]
         release: bool,
     },
-    
+
     /// Build the Velto app
     Build {
         /// Build in release mode
@@ -58,6 +58,9 @@ enum Commands {
         #[arg(long)]
         copy_assets: bool,
     },
+
+    /// Show Velto environment info
+    Info,
 }
 
 fn main() {
@@ -86,6 +89,11 @@ fn main() {
             println!("Building Velto app...");
             if let Err(e) = build_project(release, target, output, quiet, copy_assets) {
                 eprintln!("Error building Velto app: {}", e);
+            }
+        }
+        Commands::Info => {
+            if let Err(e) = show_info() {
+                eprintln!("Error retrieving Velto info: {}", e);
             }
         }
     }

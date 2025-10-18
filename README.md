@@ -9,6 +9,7 @@
 - `velto new <name>` — Create a new Velto project instantly  
 - `velto run` — Build and launch your app with clean output  
 - `velto build` — Compile your app and optionally package it  
+- `velto info` — Show your Velto environment and setup  
 - LiveReload support in dev mode  
 - Graceful shutdown on Ctrl+C  
 - No noisy Cargo logs — just your app
@@ -68,6 +69,23 @@ Options:
 - `--copy-assets` — Copy `templates/` and `static/` into the output directory
 
 > Note: Running the binary from a custom output directory may require copying assets or setting environment paths.
+
+---
+
+### Show environment info
+
+```bash
+velto info
+```
+
+Outputs:
+
+- Velto CLI version  
+- Velto Framework version (from `Cargo.lock`)  
+- Rust version  
+- Target architecture
+
+> Helpful for debugging, support, and verifying your setup.
 
 ---
 
